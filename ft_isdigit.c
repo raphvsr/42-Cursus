@@ -1,19 +1,21 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rvasseur <rvasseur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 22:00:48 by marvin            #+#    #+#             */
-/*   Updated: 2025/11/03 22:00:48 by marvin           ###   ########.fr       */
+/*   Created: 2025/11/03 18:23:56 by rvasseur          #+#    #+#             */
+/*   Updated: 2025/11/03 18:28:03 by rvasseur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char ft_tolower(char c)
+#include "libft.h"
+
+int	ft_isdigit(int c)
 {
-    if (c >= 65 && c <= 90)
-        return c + 32;
-    else
-        return c;
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
 }

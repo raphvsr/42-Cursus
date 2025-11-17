@@ -1,0 +1,74 @@
+{
+"editor.tabSize": 4,
+"editor.insertSpaces": false,
+"editor.detectIndentation": false,
+"editor.renderWhitespace": "all",
+"files.trimTrailingWhitespace": true,
+"files.insertFinalNewline": true
+}
+Create or update the launch.json file in your VSCode workspace. Add the following configuration for C launch:
+
+{
+"version": "2.0.0",
+"configurations": [
+{
+"name": "C Launch",
+"type": "cppdbg",
+"request": "launch",
+"program": "${workspaceRoot}/a.out",
+"preLaunchTask": "build",
+"internalConsoleOptions": "openOnSessionStart",
+"logging": {
+"moduleLoad": false,
+"programOutput": true,
+"trace": false
+},
+"showDisplayString": false,
+"args": [],
+"stopAtEntry": false,
+"cwd": "${workspaceRoot}",
+"environment": [],
+"externalConsole": true, // set true to enable keyboard input
+"osx": {
+"MIMode": "lldb"
+}
+}
+]
+}
+Create or update the tasks.json file in your VSCode workspace. Add the following task configuration for building C files:
+
+{
+"version": "2.0.0",
+"tasks": [
+{
+"label": "build",
+"command": "clang",
+"args": [
+"get_next_line.c",
+"get_next_line_utils.c",
+"-g"
+],
+"type": "shell",
+"presentation": {
+"echo": true,
+"reveal": "always",
+"panel": "shared"
+},
+"problemMatcher": {
+"owner": "c",
+"fileLocation": [
+"relative",
+"${workspaceRoot}"
+],
+"pattern": {
+"regexp": "^(.):(\d+):(\d+):\s+(warning|error):\s+(.)$",
+"file": 1,
+"line": 2,
+"column": 3,
+"severity": 4,
+"message": 5
+}
+}
+}
+]
+}

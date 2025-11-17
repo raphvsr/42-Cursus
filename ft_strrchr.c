@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rvasseur <rvasseur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 21:08:53 by marvin            #+#    #+#             */
-/*   Updated: 2025/11/03 21:08:53 by marvin           ###   ########.fr       */
+/*   Created: 2025/11/04 13:09:59 by rvasseur          #+#    #+#             */
+/*   Updated: 2025/11/17 16:49:06 by rvasseur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int isascii(char c)
+#include "libft.h"
+
+char	*ft_strrchr(const char *string, int searchedChar)
 {
-    if (c >= 32 && c <= 127)
-        return c;
-    else
-        return 0;
+	int len;
+
+	len = ft_strlen(string);
+	while (len >= 0)
+	{
+		if (string[len] == (char)searchedChar)
+			return ((char *)&string[len]);
+		len--;
+	}
+	return (NULL);
 }
