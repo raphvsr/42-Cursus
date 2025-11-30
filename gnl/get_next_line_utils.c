@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/26 22:05:21 by marvin            #+#    #+#             */
+/*   Updated: 2025/11/26 22:05:21 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "get_next_line.h"
 
@@ -29,7 +39,7 @@ char *ft_strchr(const char *s, int c)
     return (NULL);
 }
 
-char *gnl_strjoin(char *s1, char *s2)
+char *ft_strjoin(char *s1, char *s2)
 {
     size_t  i;
     size_t  j;
@@ -38,7 +48,7 @@ char *gnl_strjoin(char *s1, char *s2)
     i = 0;
     j = 0;
     if (!s2)
-        return (s1);
+        return (s1 ? s1 : NULL);
     res = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
     if (!res)
         return (NULL);
