@@ -1,55 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rvasseur <rvasseur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/16 21:20:23 by rvasseur          #+#    #+#             */
-/*   Updated: 2026/01/29 10:41:19 by rvasseur         ###   ########.fr       */
+/*   Created: 2025/11/08 14:21:44 by rvasseur          #+#    #+#             */
+/*   Updated: 2025/11/20 20:48:32 by rvasseur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include "minitalk.h"
-
-void	n_terminator(int pid)
+int	ft_atoi(const char *str)
 {
+	int	sign;
+	int	res;
 	int	i;
 
+	sign = 1;
+	res = 0;
 	i = 0;
-	while (i < 8)
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		kill(pid, SIGUSR1);
-		usleep(100);
+		if (str[i] == '-')
+			sign = -1;
 		i++;
 	}
-}
-
-int	main(int ac, char **av)
-{
-	pid_t	sv_pid;
-	int		i;
-	int		j;
-
-	if (ac != 3)
-		return (0);
-	sv_pid = ft_atoi(av[1]);
-	i = 0;
-	while (av[2][i])
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		j = 0;
-		while (j < 8)
-		{
-			if ((av[2][i] >> j) & 1)
-				kill(sv_pid, SIGUSR2);
-			else
-				kill(sv_pid, SIGUSR1);
-			usleep(50);
-			j++;
-		}
+		res = res * 10 + (str[i] - 48);
 		i++;
 	}
-	n_terminator(sv_pid);
-	return (1);
+	return (res * sign);
 }

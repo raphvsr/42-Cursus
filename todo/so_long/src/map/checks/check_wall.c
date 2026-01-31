@@ -1,55 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   check_wall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rvasseur <rvasseur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/16 21:20:23 by rvasseur          #+#    #+#             */
-/*   Updated: 2026/01/29 10:41:19 by rvasseur         ###   ########.fr       */
+/*   Created: 2026/01/29 13:36:08 by rvasseur          #+#    #+#             */
+/*   Updated: 2026/01/29 13:36:29 by rvasseur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../so_long.h"
 
-#include "minitalk.h"
-
-void	n_terminator(int pid)
+int	check_wall(t_game *game)
 {
 	int	i;
 
 	i = 0;
-	while (i < 8)
+	while (i < game->map_x)
 	{
-		kill(pid, SIGUSR1);
-		usleep(100);
+		if (game->map[0][i] != '1')
+			return (-1);
+		if (game->map[game->map_y - 1][i] != '1')
+			return (-1);
 		i++;
 	}
-}
-
-int	main(int ac, char **av)
-{
-	pid_t	sv_pid;
-	int		i;
-	int		j;
-
-	if (ac != 3)
-		return (0);
-	sv_pid = ft_atoi(av[1]);
 	i = 0;
-	while (av[2][i])
+	while (i < game->map_y)
 	{
-		j = 0;
-		while (j < 8)
-		{
-			if ((av[2][i] >> j) & 1)
-				kill(sv_pid, SIGUSR2);
-			else
-				kill(sv_pid, SIGUSR1);
-			usleep(50);
-			j++;
-		}
+		if (game->map[i][0] != '1')
+			return (-1);
+		if (game->map[i][game->map_x - 1] != '1')
+			return (-1);
 		i++;
 	}
-	n_terminator(sv_pid);
 	return (1);
 }

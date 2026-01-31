@@ -1,55 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   check_components.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rvasseur <rvasseur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/16 21:20:23 by rvasseur          #+#    #+#             */
-/*   Updated: 2026/01/29 10:41:19 by rvasseur         ###   ########.fr       */
+/*   Created: 2026/01/29 13:36:53 by rvasseur          #+#    #+#             */
+/*   Updated: 2026/01/30 18:55:27 by rvasseur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../so_long.h"
 
-#include "minitalk.h"
-
-void	n_terminator(int pid)
+int	check_components(t_game *game)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (i < 8)
-	{
-		kill(pid, SIGUSR1);
-		usleep(100);
-		i++;
-	}
-}
-
-int	main(int ac, char **av)
-{
-	pid_t	sv_pid;
-	int		i;
-	int		j;
-
-	if (ac != 3)
-		return (0);
-	sv_pid = ft_atoi(av[1]);
-	i = 0;
-	while (av[2][i])
+	while (i < game->map_x)
 	{
 		j = 0;
-		while (j < 8)
+		while (j < game->map_y)
 		{
-			if ((av[2][i] >> j) & 1)
-				kill(sv_pid, SIGUSR2);
-			else
-				kill(sv_pid, SIGUSR1);
-			usleep(50);
+			if (game->map[j][i] == 'C')
+				game->collect_count++;
+			if (game->map[j][i] == 'E')
+				game->exit_count++;
+			if (game->map[j][i] == 'P')
+				game->player_count++;
+			if (game->map[j][i] != 'C' && game->map[j][i] != 'P'
+				&& game->map[j][i] != 'E' && game->map[j][i] != '1'
+				&& game->map[j][i] != '0')
+				return (-1);
 			j++;
 		}
 		i++;
 	}
-	n_terminator(sv_pid);
 	return (1);
 }
+

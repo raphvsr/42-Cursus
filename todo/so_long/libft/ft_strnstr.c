@@ -1,55 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rvasseur <rvasseur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/16 21:20:23 by rvasseur          #+#    #+#             */
-/*   Updated: 2026/01/29 10:41:19 by rvasseur         ###   ########.fr       */
+/*   Created: 2025/11/04 12:29:48 by rvasseur          #+#    #+#             */
+/*   Updated: 2025/11/17 16:49:04 by rvasseur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#include "minitalk.h"
-
-void	n_terminator(int pid)
+char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
-	int	i;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	while (i < 8)
-	{
-		kill(pid, SIGUSR1);
-		usleep(100);
-		i++;
-	}
-}
-
-int	main(int ac, char **av)
-{
-	pid_t	sv_pid;
-	int		i;
-	int		j;
-
-	if (ac != 3)
-		return (0);
-	sv_pid = ft_atoi(av[1]);
-	i = 0;
-	while (av[2][i])
+	j = 0;
+	if (!*to_find)
+		return ((char *)str);
+	while (i < len && str[i])
 	{
 		j = 0;
-		while (j < 8)
+		while (str[i + j] == to_find[j] && i + j < len && str[i + j])
 		{
-			if ((av[2][i] >> j) & 1)
-				kill(sv_pid, SIGUSR2);
-			else
-				kill(sv_pid, SIGUSR1);
-			usleep(50);
+			if (to_find[j + 1] == '\0')
+				return ((char *)&str[i]);
 			j++;
 		}
 		i++;
 	}
-	n_terminator(sv_pid);
-	return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rvasseur <rvasseur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:31:41 by rvasseur          #+#    #+#             */
-/*   Updated: 2025/11/21 20:44:39 by rvasseur         ###   ########.fr       */
+/*   Updated: 2026/01/11 17:47:36 by rvasseur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <signal.h>
+# include <sys/types.h>
+# include <stdio.h>
 
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);

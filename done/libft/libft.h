@@ -1,4 +1,4 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: rvasseur <rvasseur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:31:41 by rvasseur          #+#    #+#             */
-/*   Updated: 2026/01/28 16:29:56 by rvasseur         ###   ########.fr       */
+/*   Updated: 2025/11/21 20:44:39 by rvasseur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char				**ft_split(char const *s, char c);
 char				*ft_strchr(const char *string, int searchedChar);
 char				*ft_strdup(const char *source);
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
+char				*ft_strjoin(char const *s1, char const *s2);
 size_t				ft_strlcat(char *dest, const char *src, size_t size);
 size_t				ft_strlcpy(char *dest, const char *src, size_t size);
 size_t				ft_strlen(const char *str);
