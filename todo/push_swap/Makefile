@@ -19,7 +19,7 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 SRC_DIR     = src/
 OBJ_DIR     = obj/
 
-SRC_FILES   = $(SRC_DIR)main.c \
+SRC_FILES   = $(SRC_DIR)push_swap.c \
               $(SRC_DIR)commands/commands_push.c \
               $(SRC_DIR)commands/commands_rev_rotate.c \
               $(SRC_DIR)commands/commands_rotate.c \

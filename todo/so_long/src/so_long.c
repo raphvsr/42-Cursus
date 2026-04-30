@@ -32,7 +32,10 @@ int	main(int argc, char *argv[])
 	if (!mlx_ptr)
 		return (-1);
 	win_ptr = mlx_new_window(mlx_ptr, 700, 500, "so_long");
-
+	init_image(&game, &game.img);
+	render_map(&game, &game.img);
+	mlx_hook(game.win_ptr, 17, 0, (int (*)())close_game, &game);
+	mlx_hook(game.win_ptr, 2, 1L << 0, (int (*)())input_begin, &game);
 	mlx_loop(win_ptr);
 
 	return (0);

@@ -38,8 +38,13 @@ int	main(int ac, char **av)
 	i = 0;
 	while (av[2][i])
 	{
+<<<<<<< HEAD
 		j = 0;
 		while (j < 8)
+=======
+    j = 7;
+		while (j >= 0)
+>>>>>>> 0d3e1ea (d)
 		{
 			if ((av[2][i] >> j) & 1)
 				kill(sv_pid, SIGUSR2);
